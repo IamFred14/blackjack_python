@@ -12,6 +12,18 @@ dealer = []
 def deal():
     d_card = random.choice(numb) 
     p_card, p_card1 = random.choice(numb), random.choice(numb)
+    if d_card == 11: d_card = "J"
+    elif d_card == 12: d_card = "Q"
+    elif d_card == 13: d_card = "K"
+    elif d_card == 1: d_card = "A"
+    if p_card == 11: p_card = "J"
+    elif p_card == 12: p_card = "Q"
+    elif p_card == 13: p_card = "K"
+    elif p_card == 1: p_card = "A"
+    if p_card1 == 11: p_card1 = "J"
+    elif p_card1 == 12: p_card1 = "Q"
+    elif p_card1 == 13: p_card1= "K"
+    elif p_card1 == 1: p_card1 = "A"
     print("Dealer's showing", d_card)
     print("Player's showing", p_card, "and", p_card1, "\n")
     dealer.append(d_card)
@@ -25,7 +37,7 @@ def clear():
 		os.system('clear')
 
 def dealer_hit():
-    while points_dealer() < 20: 
+    while points_dealer() < 17: 
         card = random.choice(numb)
         points_dealer()
         if card == 11: card = "J"
@@ -62,15 +74,16 @@ def points_dealer():
     return total
 
 def results():
-    if points_dealer() > 21:
+    if points_dealer() > 21 :
         print("You win! The dealer went over the limit.")
+        print("\nThank you for playing with us! See you next time.\n")
         return 1
       
-    elif points_player() > 21: 
+    elif points_player() > 21 : 
         print("You lose. Your points went over 21.")
+        print("\nThank you for playing with us! See you next time.\n")
         return 1
-    else:
-        return None
+
     
 
 clear()
@@ -98,12 +111,18 @@ while exgame == False:
         print("You got", points_player(), "points.")
         print("The dealer got", points_dealer(), "points.\n")
         results()
-        if results == None and points_player() > points_dealer():
-            print("Congrats! You win!\n")
-        elif results == None and points_dealer() > points_player():
-            print("I'm sorry, you lost.\n")
-        else: 
-            print("It's a tie!\n")
+        if results() == None and points_player() > points_dealer():
+            print("Congrats! You win!")
+            print("\nThank you for playing with us! See you next time.\n")
+
+        elif results() == None and points_dealer() > points_player():
+            print("I'm sorry, you lost.")
+            print("\nThank you for playing with us! See you next time.\n")
+
+        elif results() == None and points_dealer() == points_player():
+            print("It's a tie!")
+            print("\nThank you for playing with us! See you next time.\n")
+
         exgame = True
                 
     elif next_move == "Q" or next_move == "q":
