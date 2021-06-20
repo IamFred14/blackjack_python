@@ -83,6 +83,8 @@ def results():
     elif points_player() > 21 : 
         print("You lose. Your points went over 21.\nThank you for playing with us! See you next time.\n")
         return 1
+    else:
+        return 0
 
     
 
@@ -100,7 +102,7 @@ while exgame == False:
         points_player()
         print("\nYour current hand is", hand, ", with a total of", points_player(), "points.\n")
         
-        if results() != None:
+        if results() != 0:
             exgame = True
             break
 
@@ -111,15 +113,18 @@ while exgame == False:
         print("The dealer got", points_dealer(), "points.\n")
         
         results()
-
-        if results == None and points_player() > points_dealer():
+        
+        if results() == 0 and points_player() > points_dealer():
             print("Congrats! You win!\nThank you for playing with us! See you next time.\n")
+            break
 
-        elif results == None and points_dealer() > points_player():
+        elif results() == 0 and points_dealer() > points_player():
             print("I'm sorry, you lost.\nThank you for playing with us! See you next time.\n")
+            break
 
-        elif results == None and points_dealer() == points_player():
+        elif results() == 0 and points_dealer() == points_player():
             print("It's a tie!\nThank you for playing with us! See you next time.\n")
+            break
 
 
         exgame = True
